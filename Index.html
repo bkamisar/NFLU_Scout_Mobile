@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -471,7 +472,7 @@ function render(){
        p.value_label==='overpriced'?'<span style="font-size:9px;color:var(--accent3);margin-left:2px">▼</span>':
        p.value_label==='slight_over'?'<span style="font-size:9px;color:#f59e0b;margin-left:2px">▼</span>':'')+
       '</div>':'';
-    return '<div class="p-card'+on+'" onclick="selectPlayer(''+safeName+'')">'+
+    return '<div class="p-card'+on+'" onclick="selectPlayer(\''+safeName+'\')">'+
       '<div class="p-card-top">'+
         '<div>'+
           '<div class="p-card-name">'+p.display_name+'</div>'+
@@ -541,7 +542,7 @@ function selectPlayer(name){
   document.getElementById('dName').textContent=p.display_name;
   const dPos=document.getElementById('dPos');
   dPos.textContent=p.position;
-  dPos.style.cssText='background:'+col+'1a;color:'+col+';padding:3px 8px;border-radius:5px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;';
+  dPos.style.cssText='background:'+col+'1a;color:'+col+';padding:3px 8px;border-radius:5px;font-family:DM Mono,monospace;font-size:10px;font-weight:700;';
   document.getElementById('dGames').textContent=p.total_games+' career games';
 
   // Value badge
@@ -562,11 +563,11 @@ function selectPlayer(name){
   const pr=posRank(p),pffPr=pffPosRank(p),posTotal=players.filter(x=>x.position===p.position).length;
   const gap=pffPr-pr;
   const gapHtml=Math.abs(gap)>=2?
-    '<div style="font-family:'DM Mono',monospace;font-size:10px;margin-top:4px;color:'+(gap>0?'var(--accent)':'var(--accent3)')+'">'+
+    '<div style="font-family:DM Mono,monospace;font-size:10px;margin-top:4px;color:'+(gap>0?'var(--accent)':'var(--accent3)')+'">'+
     (gap>0?'▲ Model +'+gap+' vs PFF':'▼ PFF +'+Math.abs(gap)+' vs Model')+'</div>':'';
   const overallGap=p.pff_rank-(p.model_overall_rank||p.pff_rank);
   const oGapHtml=Math.abs(overallGap)>=5?
-    '<div style="font-family:'DM Mono',monospace;font-size:10px;margin-top:4px;color:'+(overallGap>0?'var(--accent)':'var(--accent3)')+'">'+
+    '<div style="font-family:DM Mono,monospace;font-size:10px;margin-top:4px;color:'+(overallGap>0?'var(--accent)':'var(--accent3)')+'">'+
     (overallGap>0?'▲ Model +'+overallGap+' vs PFF':'▼ PFF +'+Math.abs(overallGap)+' vs Model')+'</div>':'';
 
   // Depth note
@@ -629,7 +630,7 @@ function selectPlayer(name){
     const v2=vMap2[vLabel];
     const chipHtml=v2&&vLabel!=='fair'?
       '<div style="margin-bottom:8px;"><span class="value-chip" style="color:'+v2.col+';background:'+v2.bg+'">'+v2.icon+' '+v2.text+'</span>'+
-      '<span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:6px;">'+(gap2>0?'+':'')+gap2.toFixed(0)+' rank pts</span></div>':'';
+      '<span style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);margin-left:6px;">'+(gap2>0?'+':'')+gap2.toFixed(0)+' rank pts</span></div>':'';
     const comps=(p.proj_comps||[]).slice(0,3).map(c=>
       '<div class="auction-comp"><span>'+c.NAME+' ('+c.YEAR+')</span><span>PFF #'+Math.round(c.pff_rank)+'</span><span style="color:#f59e0b;font-weight:500">$'+c.PRICE+'</span></div>'
     ).join('');
@@ -637,16 +638,16 @@ function selectPlayer(name){
     auctionHtml='<div class="sec-lbl" style="margin-top:4px;">Auction Value <span style="color:var(--muted);font-weight:400;font-size:9px;">— '+(confMap[p.proj_conf]||'')+'</span></div>'+
       '<div class="auction-card">'+chipHtml+
       '<div class="auction-price-row">'+
-        '<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:3px;letter-spacing:1px;text-transform:uppercase;">Projected Price</div>'+
+        '<div><div style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);margin-bottom:3px;letter-spacing:1px;text-transform:uppercase;">Projected Price</div>'+
         '<div class="auction-price">$'+proj+'</div></div>'+
-        '<div style="text-align:right;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:2px;">$320 budget</div>'+
-        '<div style="font-family:'DM Mono',monospace;font-size:11px;color:'+bpctCol+'">'+bpct+'% of budget</div></div>'+
+        '<div style="text-align:right;"><div style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);margin-bottom:2px;">$320 budget</div>'+
+        '<div style="font-family:DM Mono,monospace;font-size:11px;color:'+bpctCol+'">'+bpct+'% of budget</div></div>'+
       '</div>'+
-      '<div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:5px;">Range: <span style="color:var(--muted2)">$'+lo+' – $'+hi+'</span></div>'+
+      '<div style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);margin-bottom:5px;">Range: <span style="color:var(--muted2)">$'+lo+' – $'+hi+'</span></div>'+
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">'+
-        '<span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);min-width:24px;">$'+lo+'</span>'+
+        '<span style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);min-width:24px;">$'+lo+'</span>'+
         '<div class="auction-bar-track"><div class="auction-bar-fill" style="width:'+fillW+'%"></div><div class="auction-marker" style="left:'+markPos+'%"></div></div>'+
-        '<span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);min-width:28px;text-align:right;">$'+hi+'</span>'+
+        '<span style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);min-width:28px;text-align:right;">$'+hi+'</span>'+
       '</div>'+
       '<div style="font-size:10px;color:var(--muted2);margin-bottom:8px;">Based on '+p.proj_n_comps+' historical '+p.position+' rookies at similar PFF rank.</div>'+
       (comps?'<div class="sec-lbl" style="font-size:8px;margin-bottom:4px;">Auction Price Comps</div>'+comps:'')+
@@ -686,7 +687,7 @@ function selectPlayer(name){
         '<div class="stat-tile-lbl">'+lbl+'</div>'+
         '<div class="stat-tile-val" style="color:'+pctCol+'">'+dispVal+'</div>'+
         (pct!=null?'<div style="height:3px;background:var(--border2);border-radius:2px;margin-top:4px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+pctCol+';border-radius:2px"></div></div>'+
-        '<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px">'+pctLbl+' ('+pct+'th)</div>':'')+
+        '<div style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);margin-top:2px">'+pctLbl+' ('+pct+'th)</div>':'')+
       '</div>';
     }).join(''):'<div style="color:var(--muted);font-size:12px;padding:8px 0">No detailed stats available.</div>')+
     '</div>';
@@ -712,14 +713,14 @@ function selectPlayer(name){
     '<div class="sec-lbl">Impact Score</div>'+
     '<div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px;">'+
       '<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">'+
-        '<div style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:1px;line-height:1;color:'+impCol+'">'+imp+'</div>'+
-        '<div style="font-family:'DM Mono',monospace;font-size:14px;color:var(--muted)">/100 &nbsp;'+impactLabel(imp)+'</div>'+
+        '<div style="font-family:Bebas Neue,sans-serif;font-size:48px;letter-spacing:1px;line-height:1;color:'+impCol+'">'+imp+'</div>'+
+        '<div style="font-family:DM Mono,monospace;font-size:14px;color:var(--muted)">/100 &nbsp;'+impactLabel(imp)+'</div>'+
       '</div>'+
       '<div class="gauge-track"><div class="gauge-fill" style="width:'+imp+'%;background:'+impCol+'"></div></div>'+
       '<div class="gauge-labels"><span>0</span><span>100</span></div>'+
       '<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">'+
-        '<span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">Market Value</span>'+
-        '<span style="font-family:'DM Mono',monospace;font-size:12px;font-weight:600;padding:4px 8px;border-radius:5px;background:'+vb.bg+';color:'+vb.col+'">'+vb.text+'</span>'+
+        '<span style="font-family:DM Mono,monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">Market Value</span>'+
+        '<span style="font-family:DM Mono,monospace;font-size:12px;font-weight:600;padding:4px 8px;border-radius:5px;background:'+vb.bg+';color:'+vb.col+'">'+vb.text+'</span>'+
       '</div>'+
     '</div>'+
 
@@ -749,10 +750,10 @@ function selectPlayer(name){
       '<div class="rank-card">'+
         '<div class="score-card-lbl">Position Rank</div>'+
         '<div style="display:flex;gap:12px;align-items:flex-end;">'+
-          '<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">Model</div>'+
-          '<div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent)">#'+pr+'</div></div>'+
-          '<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">PFF</div>'+
-          '<div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent2)">#'+pffPr+'</div></div>'+
+          '<div><div style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">Model</div>'+
+          '<div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--accent)">#'+pr+'</div></div>'+
+          '<div><div style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">PFF</div>'+
+          '<div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--accent2)">#'+pffPr+'</div></div>'+
         '</div>'+
         '<div style="font-size:10px;color:var(--muted2);">of '+posTotal+' '+p.position+'s</div>'+
         gapHtml+
@@ -760,8 +761,8 @@ function selectPlayer(name){
       '<div class="rank-card">'+
         '<div class="score-card-lbl">Overall Rank</div>'+
         '<div style="display:flex;gap:12px;align-items:flex-end;">'+
-          '<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">PFF</div>'+
-          '<div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent2)">#'+p.pff_rank+'</div></div>'+
+          '<div><div style="font-family:DM Mono,monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">PFF</div>'+
+          '<div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--accent2)">#'+p.pff_rank+'</div></div>'+
         '</div>'+
         '<div style="font-size:10px;color:var(--muted2);">of '+players.length+' prospects</div>'+
         oGapHtml+
